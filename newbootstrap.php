@@ -27,14 +27,17 @@ $cartArray = array(
 if(empty($_SESSION["shopping_cart"])) {
 	$_SESSION["shopping_cart"] = $cartArray;
 	$status = "<div class='box'>Product is added to your cart!</div>";
+	header('location: newbootstrap.php');
 }else{
 	$array_keys = array_keys($_SESSION["shopping_cart"]);
 	if(in_array($code,$array_keys)) {
 		$status = "<div class='box' style='color:red;'>
-		Product is already added to your cart!</div>";	
+		Product is already added to your cart!</div>";
+		header('location: newbootstrap.php');	
 	} else {
 	$_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
 	$status = "<div class='box'>Product is added to your cart!</div>";
+	header('location: newbootstrap.php');
 	}
 
 	}
@@ -60,7 +63,7 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" type="text/css" href="new.css">
+  <link rel="stylesheet" type="text/css" href="new1.css">
 
 </head>
 <body>
@@ -76,41 +79,19 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
   		<a class="navbar-brand" href="newbootstrap.php"><span class="glyphicon glyphicon-briefcase"></span>ShoppingSite</a>
   	</div>
   	<ul class ="nav navbar-nav">
-  	
-  		<li class="dropdown"><a class ="dropdown-toggle" data-toggle="dropdown" href ="#">Ankur<span class ="caret"></span></a>
-  			<ul class ="dropdown-menu">
-  				<li><a href ="#"><span class ="glyphicon glyphicon-user"></span>Myprofile</a></li>
-  				<li><a href="#"><span class="glyphicon glyphicon-film"></span>Coupans</a></li>
-  				<li><a href="#"><span class="glyphicon glyphicon-gift"></span>Gift cards</a></li>
-  				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span>My chats</a></li>
-  				<li><a href="#"><span class ="glyphicon glyphicon-bell"></span>Notification</a></li>
-  				<li><a href="#"><span class ="glyphicon glyphicon-off"></span>Logout</a></li>
-  			</ul>
-  			<li><a href ="newbootstrap.php"> Home</a></li>
-  			<li><a href="#">About</a></li>
+  	     <li><a href ="newbootstrap.php"> Home</a></li>
+  			
+
   		</ul>
   		<ul class ="nav navbar-nav navbar-right">
-        <li class="dropdown"><a class ="dropdown-toggle" data-toggle="dropdown" href ="newbootstrap.php">More<span class ="caret"></span></a>
-        <ul class ="dropdown-menu">
-          <li><a href ="#"><span class ="glyphicon glyphicon-bell"></span>Notification Preferences</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-gift"></span>Sell on this site</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>24x7 customer care</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-film"></span>Advertise</a></li>
-        </ul>
+        
         
   			<li><a href ="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span>cart</a></li>
   			<li><a href ="signup.php"><span class ="glyphicon glyphicon-user"></span>Signup</a></li>
   			<li><a href="login.php"><span class ="glyphicon glyphicon-log-in"></span> login</a></li>
 
   		</ul>
-  		<form class ="navbar-form navbar-left" action="/action_page.php">
-  			<div class ="form-group">
-  				<input type ="text" class="form-control" placeholder="Search for product,brand">
-  			</div>
-  			<button type ="button" class ="btn btn-info">
-  				<span class ="glyphicon glyphicon-search"></span>Search
-  			</button>
-  		</form>
+  		
   	</div>
   </nav>
 
@@ -138,8 +119,8 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
   while ($row = mysqli_fetch_array($result)) {
     echo "<div class='row,container'>
     <div class='col-lg-3 col-sm-6 o'>
-     <div class='thumbnail d'>
-     <form method='post' action='newbootstrap.php'>
+	 <div class='thumbnail d'>
+     <form method='post' action=''>
      <input type='hidden' name='code' value=".$row['code']." />
       <img src='images/".$row['image']."' style='width:80%'>
       <div class='shop-item-details'>
@@ -147,7 +128,7 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
       <center>
       <button type='submit' class='btn btn-info'>ADD TO CART</button>
    </center>
-      <h3 style ='text-align:center;'>".$row['name']." </h3>
+	  <h3 style ='text-align:center;'>".$row['name']." </h3>
   </div>
   </form>
     </div>
@@ -155,5 +136,6 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
     </div>";
   }
 ?>
+<div class="container-fluid text-center text-md-left">  Created by Ankur Omar ,Abhay pratap Singh</div>
 </body>
 </html>
